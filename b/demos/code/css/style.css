@@ -1,0 +1,200 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  font-family: sans-serif;
+  margin: 0;
+  overflow: hidden;
+}
+.titleSide {
+  background-color:rgb(245, 245, 245);
+ 
+}
+.centerSide {
+  text-align: center;
+  vertical-align: top;
+  margin-top: 4px;
+  color: rgb(224, 136, 6);
+  
+}
+.leftSide {
+  vertical-align:middle;
+  font-family:arial;
+  font-size:16px;
+  color:#999;
+  text-align:left;
+}
+.rightSide {
+  color:#666;
+}
+#blocklyDiv {
+  height: 600px;
+  width: 800px;
+}
+html[dir="RTL"] .farSide {
+  text-align: left;
+}
+.myLabelStyle>.blocklyFlyoutLabelText {
+  font-style: italic;
+  fill: #E4E4E4;
+}
+/* Buttons */
+button {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: large;
+  background-color: #eee;
+  color: #000;
+}
+button.primary {
+  border: 1px solid #dd4b39;
+  background-color: #dd4b39;
+  color: #fff;
+}
+button.green {
+  border: 1px solid #216917;
+  background-color:#216917;
+  color: #fff;
+}
+button.primary>img {
+  opacity: 1;
+}
+button>img {
+  opacity: 0.6;
+  vertical-align: text-bottom;
+}
+button:hover>img {
+  opacity: 1;
+}
+button:active {
+  border: 1px solid #888 !important;
+}
+button:hover {
+  box-shadow: 2px 2px 5px #888;
+}
+button.disabled:hover>img {
+  opacity: 0.6;
+}
+button.disabled {
+  display: none;
+}
+button.notext {
+  font-size: 120%;
+  width: 40px;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 90%;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: rgb(192, 19, 19);
+}
+
+/* Tabs */
+#tabRow>td {
+  border: 1px solid #ccc;
+  border-bottom: none;
+  white-space:nowrap;
+}
+td.tabon {
+  border-bottom-color: #ddd !important;
+  background-color: #ddd;
+  padding: 5px 19px;
+}
+td.taboff {
+  cursor: pointer;
+  padding: 5px 19px;
+}
+td.taboff:hover {
+  background-color: #eee;
+}
+td.tabmin {
+  border-top-style: none !important;
+  border-left-style: none !important;
+  border-right-style: none !important;
+}
+td.tabmax {
+  border-top-style: none !important;
+  border-left-style: none !important;
+  border-right-style: none !important;
+  width: 99%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  text-align: right;
+}
+html[dir=rtl] td.tabmax {
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+td {
+  padding: 0;
+  vertical-align: top;
+}
+.content {
+  visibility: hidden;
+  margin: 0;
+  padding: 1ex;
+  position: absolute;
+  direction: ltr;
+}
+pre.content {
+  border: 1px solid #ccc;
+  overflow: scroll;
+}
+#content_blocks {
+  padding: 0;
+}
+.blocklySvg {
+  border-top: none !important;
+}
+#content_xml {
+  resize: none;
+  outline: none;
+  border: 1px solid #ccc;
+  font-family: monospace;
+  overflow: scroll;
+}
+#content_debug {
+  resize: none;
+  outline: none;
+  color:Green;
+  font-family:"隶书";
+  font-weight:bold;
+
+}
+
+#languageMenu {
+  vertical-align: top;
+  margin-left: 4px;
+  margin-right: 15px;
+  margin-top: 5px;
+  font-size:14px;
+}
+#TemplateMenu {
+  vertical-align: top;
+  margin-left: 6px;
+  margin-right: 4px;
+  margin-top: 5px;
+  font-size:14px;
+  width:100px;
+}
+/* Buttons */
+button {
+  padding: 1px 10px;
+  margin: 1px 5px;
+}
+
+
+

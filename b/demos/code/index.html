@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google" value="notranslate">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png"/> 
+  <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+  <script src="javascript/storage.js"></script>
+
+  <script src="../../blockly_compressed.js"></script>
+  <script src="../../allblocks_compressed.js"></script>
+  <script src="../../javascript_compressed.js"></script>
+  <script src="../../allpython_compressed.js"></script>
+  <script src="msg/en.js"></script>
+  <script src="msg/zh-hans.js"></script>
+  <script src="msg/messages.js"></script>
+
+  <script src="blocks/gpio.js"></script>
+  <script src="blocks/pwm.js"></script>
+  <script src="blocks/i2c.js"></script>
+  <script src="blocks/spi.js"></script>
+  <script src="blocks/sound.js"></script>
+  <script src="blocks/serial.js"></script>
+  <script src="blocks/analog.js"></script>
+  <script src="blocks/tcpip.js"></script>
+  <script src="blocks/print.js"></script>
+  <script src="blocks/iot.js"></script>
+  <script src="blocks/lcd.js"></script>
+  <script src="blocks/time.js"></script>
+  <script src="blocks/file.js"></script>
+  <script src="blocks/camera.js"></script>
+  <script src="blocks/weeemake.js"></script>
+  <script src="blocks/other.js"></script>
+  <script src="generator/python/gpio.js"></script>
+  <script src="generator/python/pwm.js"></script>
+  <script src="generator/python/i2c.js"></script>
+  <script src="generator/python/spi.js"></script>
+  <script src="generator/python/sound.js"></script>
+  <script src="generator/python/serial.js"></script>
+  <script src="generator/python/analog.js"></script>
+  <script src="generator/python/tcpip.js"></script>
+  <script src="generator/python/print.js"></script>
+  <script src="generator/python/iot.js"></script>
+  <script src="generator/python/lcd.js"></script>
+  <script src="generator/python/time.js"></script>
+  <script src="generator/python/file.js"></script>
+  <script src="generator/python/camera.js"></script>
+  <script src="generator/python/weeemake.js"></script>
+  <script src="generator/python/other.js"></script>
+  
+  <script src="javascript/code.js"></script>
+</head>
+<body>
+  <table  width="100%" height="30px" align="center" class="titleSide">
+    <tr >
+        <td width="30%" id="title" class="leftSide" >dd</td>
+        <td width="50%" class="centerSide"  align="center"><span id="copyright" style="font-family:arial;font-size:12px;color:#999;">copyright</span></td>
+        <td width="40%" class="rightSide"align="right"><select id="TemplateMenu"></select></td>
+        <td width="40%" class="rightSide"align="right"><select id="languageMenu"></select></td>
+      </tr>
+  </table>
+
+  <table width="100%" height="100%">
+    <tr  width="100%" >
+      <td colspan=2>
+        <table width="100%" >
+          <tr id="tabRow" height="1em">
+            <td id="tab_blocks" class="tabon">...</td>
+            <td class="tabmin">&nbsp;</td>
+            <td id="tab_python" class="taboff">Python</td>
+            <td class="tabmin">&nbsp;</td>
+            <td id="tab_debug" class="taboff">Debug</td>
+            <td class="tabmax"> 
+              <input type="file" id="btn_file" accept="text/xml" onchange="jsReadFiles(this.files)" style="display:none">
+              <button onclick="Code.upLoad()" id="uploadButton" class="notext" title="...">
+                  <i class="fa fa-upload" aria-hidden="true" style="color:rgb(85, 88, 85)"></i>
+              </button> 
+              <button onclick="Code.downLoad()" id="downloadButton" class="notext" title="...">
+                  <i class="fa fa-download" aria-hidden="true" style="color:rgb(85, 88, 85)"></i>     
+              </button>
+              <button onclick="Code.discard()" id="trashButton" class="notext" title="...">
+                  <i class="fa fa-trash" aria-hidden="true" style="color:rgb(85, 88, 85)"></i>
+              </button>
+              <button onclick="Code.likeJS()" id="likeButton" class="notext" title="...">
+                  <i class="fa fa-heart" aria-hidden="true" style="color:rgb(85, 88, 85)"></i>
+              </button>
+              <button onclick="Code.runJS()" id="runButton" class="notext primary" title="...">
+                  <i class="fa fa-play" aria-hidden="true" style="color:white"></i>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="100%" colspan=2 id="content_area">
+      </td>
+    </tr>
+  </table>
+  <div id="content_blocks" class="content"> </div>
+  <textarea id="content_python" class="content"></textarea>
+  <pre id="content_debug" class="content"></pre>
+  <xml id="toolbox" style="display: none" >
+  <category name="%{BKY_CATDRIVER}" colour="%{BKY_DRIVER_HUE}">
+  <category name="%{BKY_CATGPIO}" colour="%{BKY_GPIO_HUE}" >
+      <block type="gpio_mode">
+          <value name="NAME"><shadow type="gpio_list"></shadow></value>
+      </block>
+      <block type="gpio_write">
+          <value name="NAME"><shadow type="gpio_list"></shadow></value>
+          <value name="VALUE"><shadow type="gpio_value"></shadow></value>
+      </block>
+      <block type="gpio_read">
+          <value name="NAME"><shadow type="gpio_list"></shadow></value>
+      </block>
+      <block type="gpio_interrupt">
+          <value name="NAME"><shadow type="gpio_list"></shadow></value>
+      </block>
+      <block type="gpio_keydown">
+        <value name="NAME"><shadow type="gpio_joklist"></shadow></value>
+    </block>
+      <block type="gpio_value"></block>
+      <block type="gpio_list"></block>
+      <block type="gpio_ledlist"></block>
+      <block type="gpio_joklist"></block>
+      <block type="gpio_buttonlist"></block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATPWM}" colour="%{BKY_PWM_HUE}">
+     <block type="pwm_period_ms">
+          <value name="NAME"><shadow type="pwm_list"></shadow></value>
+          <value name="VALUE"><shadow type="math_number"><field name="NUM">2</field></shadow></value>
+     </block>
+      <block type="pwm_cycle">
+          <value name="NAME"><shadow type="pwm_list"></shadow></value>
+          <value name="VALUE"><shadow type="math_number"><field name="NUM">0.25</field></shadow></value>
+     </block>
+     <block type="pwm_enable">
+        <value name="NAME"><shadow type="pwm_list"></shadow></value>
+        <value name="VALUE"><shadow type="pwm_value"></shadow></value>
+     </block>
+     <block type="pwm_value"></block>
+     <block type="pwm_list"></block>
+     <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATI2C}" colour="%{BKY_I2C_HUE}">
+      <block type="i2c_address">
+        <value name="NAME"><shadow type="i2c_list"></shadow></value>
+      </block>
+      <block type="i2c_readreg">
+        <value name="NAME"><shadow type="i2c_list"></shadow></value>
+      </block>
+      <block type="i2c_writereg">
+        <value name="NAME"><shadow type="i2c_list"></shadow></value>
+      </block>
+      <block type="i2c_list"></block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATSPI}" colour="%{BKY_SPI_HUE}">
+      <block type="spi_writeread">
+        <value name="NAME"><shadow type="spi_list"></shadow></value>
+      </block>
+      <block type="spi_list"></block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATSERIAL}" colour="%{BKY_SERIAL_HUE}">
+        <block type="serial_setbaudrate">
+            <value name="NAME"><shadow type="serial_list"></shadow></value>
+            <value name="VALUE"><shadow type="math_number"><field name="NUM">115200</field></value>
+          </block>
+        <block type="serial_write">
+         <value name="NAME"><shadow type="serial_list"></shadow></value>
+         <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+        </block>
+        <block type="serial_writeline">
+          <value name="NAME"><shadow type="serial_list"></shadow></value>
+          <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+         </block>
+         <block type="serial_writebyte">
+         <value name="NAME"><shadow type="serial_list"></shadow></value>
+         <value name="VALUE"><shadow type="math_number"><field name="NUM">255</field></value>
+        </block>
+        <block type="serial_dataavailable">
+          <value name="NAME"><shadow type="serial_list"></shadow></value>
+          <value name="VALUE"><shadow type="math_number"><field name="NUM">0</field></value>
+         </block>
+        <block type="serial_readstr">
+            <value name="NAME"><shadow type="serial_list"></shadow></value>
+            <value name="VALUE"><shadow type="math_number"><field name="NUM">1</field></value>
+        </block>
+        <block type="serial_modbus">
+          <value name="NAME"><shadow type="serial_list"></shadow></value>
+         <value name="BAUDRATE"><shadow type="math_number"><field name="NUM">9600</field></value>
+      </block>
+        <block type="serial_list"></block>
+        <label text="END" web-class="myLabelStyle"></label>
+      </category>
+    </category>
+    <category name="%{BKY_CATSENSOR}" colour="%{BKY_SENSOR_HUE}">
+      <block type="i2c_mpu6050"></block>
+      <block type="gpio_keydown">
+          <value name="NAME"><shadow type="weeemake_buttonlist"></shadow></value>
+      </block>
+      <block type="weeemake_wehumiture">
+      </block>
+      <block type="weeemake_wegassensor">
+      </block>
+      <block type="weeemake_weflamesensor">
+      </block>
+      <block type="weeemake_wecompasssensor">
+      </block>
+      <block type="weeemake_weultrasondistancesensor">
+      </block>
+      <block type="weeemake_wejoystick">
+      </block>
+      <block type="weeemake_wemoisturesensor">
+      </block>
+      <block type="weeemake_wepirsensor">
+      </block>
+      <block type="weeemake_welinefollower">
+      </block>
+      <block type="weeemake_weds18b20">
+      </block>
+      <block type="weeemake_wecolorsensor_getcolor">
+      </block>
+      <block type="weeemake_wetiltswitch">
+      </block>
+      <block type="weeemake_we4ledbutton">
+      </block>
+      <block type="weeemake_weuvsensor">
+      </block>
+      <block type="weeemake_wepm2_5sensor">
+      </block>
+      <block type="weeemake_webarometer">
+      </block>
+      <block type="weeemake_wewatersensor"></block>
+      <block type="weeemake_wepotentiometer"></block>
+      
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATCONTROL}" colour="%{BKY_CONTROL_HUE}">
+        <block type="gpio_led">
+            <value name="NAME"><shadow type="gpio_ledlist"></shadow></value>
+            <value name="VALUE"><shadow type="gpio_value"></shadow></value>
+        </block>
+        <block type="weeemake_we130motor">
+         <value name="VALUE"><shadow type="math_number"><field name="NUM">100</field></value>
+        </block>
+        <block type="weeemake_wedcmotor">
+          <value name="VALUE"><shadow type="math_number"><field name="NUM">100</field></value>
+        </block>
+        <block type="weeemake_webot">
+          <value name="VALUE"><shadow type="math_number"><field name="NUM">100</field></value>
+        </block>
+        <block type="weeemake_weservo">
+          <value name="VALUE"><shadow type="math_number"><field name="NUM">90</field></value>
+        </block>
+        <block type="weeemake_weultrasonshowrgbsensor">
+          <value name="VALUE_C"><shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+        </block>
+        <block type="weeemake_wergb5module">
+          <value name="VALUE_C"><shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+        </block>
+        <block type="weeemake_wergbstrip">
+          <value name="VALUE_C"><shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+        </block>
+        <block type="weeemake_wecolorsensor_setlight">
+          <value name="VALUE"><shadow type="weeemake_openclose"><field name="NUM">0</field></shadow></value>
+        </block>
+        <block type="weeemake_wecolorsensor_whitebalance">
+        </block>
+        <block type="weeemake_werelay">
+          <value name="VALUE"><shadow type="weeemake_openclose"><field name="NUM">0</field></shadow></value>
+        </block>
+        <block type="weeemake_weatomizer">
+          <value name="VALUE"><shadow type="weeemake_openclose"><field name="NUM">0</field></shadow></value>
+        </block>
+        <block type="weeemake_wesingleled">
+          <value name="VALUE"><shadow type="weeemake_openclose"><field name="NUM">0</field></shadow></value>
+        </block>
+        <label text="END" web-class="myLabelStyle"></label>
+      </category>
+    <category name="%{BKY_CATFILE}" colour="%{BKY_FILE_HUE}">
+        <block type="file_list"></block>
+        <block type="file_create">
+            <value name="NAME"><shadow type="file_list"></shadow></value>
+            <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+         </block>
+       <block type="file_write">
+          <value name="NAME"><shadow type="file_list"></shadow></value>
+          <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+       </block>
+       <block type="file_writeline">
+        <value name="NAME"><shadow type="file_list"></shadow></value>
+        <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+     </block>
+     <block type="file_read">
+      <value name="NAME"><shadow type="file_list"></shadow></value>
+     </block>
+      <block type="file_readline">
+        <value name="NAME"><shadow type="file_list"></shadow></value>
+        <value name="VALUE"><shadow type="math_number"><field name="NUM">0</field></value>
+      </block>
+      <block type="file_readlines">
+        <value name="NAME"><shadow type="file_list"></shadow></value>
+      </block>
+      <block type="file_wget">
+        <value name="VALUE"><shadow type="text"><field name="TEXT">http://www.trtos.com/zb_users/upload/2017/07/201707011498887658416416.jpg</field></value>
+      </block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATTCPIP}" colour="%{BKY_TCPIP_HUE}">
+      <block type="tcpip_ipaddress">
+         <value name="NAME"><shadow type="text"><field name="TEXT">193.112.211.120</field></value>
+         <value name="VALUE"><shadow type="math_number"><field name="NUM">8081</field></value>
+      </block>
+      <block type="tcpip_connect">
+         <value name="NAME"><shadow type="tcpip_ipaddress"></shadow></value>
+      </block>
+      <block type="tcpip_send">
+         <value name="NAME"><shadow type="tcpip_ipaddress"></shadow></value>
+         <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field>
+      </block>
+      <block type="tcpip_recv">
+         <value name="NAME"><shadow type="tcpip_ipaddress"></shadow></value>
+         <value name="VALUE"><shadow type="math_number"><field name="NUM">1024</field></value>
+      </block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATIOT}" colour="%{BKY_IOT_HUE}">
+      <block type="iot_send">
+      <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+      </block>
+      <block type="iot_get">
+      <value name="NAME"><shadow type="text"><field name="TEXT">pyly</field></value>
+      </block>
+        <block type="iot_set">
+      <value name="NAME"><shadow type="text"><field name="TEXT">pyly</field></value>
+      <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+      </block>
+      <block type="iot_httpget">
+        <value name="VALUE"><shadow type="text"><field name="TEXT">http://v.juhe.cn/toutiao/index?type=top&key=abb5e81103ae6774d26389c635d91a69</field></value>
+        </block>
+      <block type="iot_httppost">
+        <value name="VALUE"><shadow type="text"><field name="TEXT">http://web.juhe.cn:8080/finance/stock/hs</field></value>
+        <value name="POST"><shadow type="text"><field name="TEXT">gid=sh601009&type=1&key=a2db19af7eb828a9e224b3fb245e5157</field></value>
+        </block>
+        <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATSOUND}" colour="%{BKY_SOUND_HUE}">
+      <block type="sound_play"></block>
+      <block type="sound_playpath">
+        <value name="VALUE"><shadow type="text"><field name="TEXT">/www/pyly/sound/move1.mp3</field></value>
+        </block>
+      <block type="sound_tts">
+        <value name="TEXT"><shadow type="text"><field name="TEXT">你好 派狸！</field></value>
+        <value name="API_KEY"><shadow type="text"><field name="TEXT">4E1BG9lTnlSeIf1NQFlrSq6h</field></value>
+        <value name="SECRET_KEY"><shadow type="text"><field name="TEXT">544ca4657ba8002e3dea3ac2f5fdd241</field></value>
+      </block>
+      <block type="sound_record">
+        <value name="VALUE"><shadow type="math_number"><field name="NUM">10</field></value>
+      </block>
+      <block type="sound_piano"></block>
+      <block type="sound_melody"></block>
+      <block type="sound_effect"></block>
+      <block type="sound_dance"></block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATTIME}" colour="%{BKY_TIME_HUE}">
+      <block type="time_getnow"></block>
+      <block type="time_sleep">
+        <value name="VALUE"><shadow type="math_number"><field name="NUM">1</field></value>
+      </block>
+      <block type="time_nowdate"></block>
+      <block type="time_nowtime"></block>
+      <block type="time_timer">
+        <value name="NAME"><shadow type="timer_list"></shadow></value>
+        <value name="VALUE"><shadow type="math_number"><field name="NUM">10</field></value>
+      </block>
+      <block type="time_thread">
+        <value name="NAME"><shadow type="thread_list"></shadow></value>
+      </block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATCAMERA}" colour="%{BKY_CAMERA_HUE}">
+      <block type="camera_take">
+      <value name="NAME"><shadow type="camera_list"></shadow></value>
+      </block>
+      <block type="camera_previewconsole">
+        <value name="NAME"><shadow type="camera_list"></shadow></value>
+      </block>
+      <block type="camera_showconsole">
+        <value name="NAME"><shadow type="camera_list"></shadow></value>
+      </block>
+      <block type="camera_baiduaip">
+        <value name="SRC"><shadow type="text"><field name="TEXT"></field></value>
+        <value name="API_KEY"><shadow type="text"><field name="TEXT">gGKmBmte84Sbe8AlfWjddten</field></value>
+        <value name="SECRET_KEY"><shadow type="text"><field name="TEXT">FrWRd045UsMLL6XbqQKK4aeUEY1S3waG</field></value>
+      </block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATLCD}" colour="%{BKY_LCD_HUE}">
+      <category name="%{BKY_CATLCDBASE}" colour="%{BKY_LCD_HUE}">
+        <block type="lcd_clear">
+          <value name="VALUE_C">
+            <shadow type="colour_picker"><field name="COLOUR">#000000</field></shadow>
+        </value>
+        </block>
+        <block type="lcd_writeline">
+        <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+        </block>
+        <block type="lcd_writestring">
+          <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+          <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+          <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+          <value name="VALUE_FC">
+              <shadow type="colour_picker"><field name="COLOUR">#ffffff</field></shadow>
+            </value>
+          <value name="VALUE_BC">
+              <shadow type="colour_picker"><field name="COLOUR">#000000</field></shadow>
+            </value>
+          <value name="VALUE_AC">
+              <shadow type="colour_picker"><field name="COLOUR">#000000</field></shadow>
+            </value>
+          </block>
+          <block type="lcd_writestring1">
+            <value name="VALUE_FONT"><shadow type="math_number"><field name="NUM">32</field></value>
+            <value name="VALUE"><shadow type="text"><field name="TEXT">pyly</field></value>
+            <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_FC">
+                <shadow type="colour_picker"><field name="COLOUR">#ffffff</field></shadow>
+              </value>
+            <value name="VALUE_BC">
+                <shadow type="colour_picker"><field name="COLOUR">#000000</field></shadow>
+              </value>
+            <value name="VALUE_AC">
+                <shadow type="colour_picker"><field name="COLOUR">#000000</field></shadow>
+              </value>
+            </block>
+        <block type="lcd_drawdot">
+          <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+          <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+          <value name="VALUE_C">
+              <shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+          </value>
+        </block>
+        <block type="lcd_drawline">
+            <value name="VALUE_X1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_X2"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_Y2"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_C">
+                <shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+            </value>
+          </block>
+        <block type="lcd_drawrect">
+            <value name="VALUE_X1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_X2"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_Y2"><shadow type="math_number"><field name="NUM">10</field></value>
+              <value name="VALUE_C">
+                <shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+              </value>
+          </block>
+        <block type="lcd_drawrectfill">
+            <value name="VALUE_X1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_X2"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_Y2"><shadow type="math_number"><field name="NUM">10</field></value>
+              <value name="VALUE_C">
+                <shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+              </value>
+          </block>
+          <block type="lcd_drawtriangle">
+            <value name="VALUE_X1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_X2"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_Y2"><shadow type="math_number"><field name="NUM">30</field></value>
+            <value name="VALUE_X3"><shadow type="math_number"><field name="NUM">90</field></value>
+            <value name="VALUE_Y3"><shadow type="math_number"><field name="NUM">90</field></value>
+              <value name="VALUE_C">
+                <shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+              </value>
+          </block>
+          <block type="lcd_filltriangle">
+            <value name="VALUE_X1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y1"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_X2"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_Y2"><shadow type="math_number"><field name="NUM">30</field></value>
+            <value name="VALUE_X3"><shadow type="math_number"><field name="NUM">90</field></value>
+            <value name="VALUE_Y3"><shadow type="math_number"><field name="NUM">90</field></value>
+              <value name="VALUE_C">
+                <shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+              </value>
+          </block>
+          
+        <block type="lcd_drawcircle">
+            <value name="VALUE_X1"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_Y1"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_R"><shadow type="math_number"><field name="NUM">10</field></value>
+              <value name="VALUE_C">
+                <shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+              </value>
+          </block>
+        <block type="lcd_drawcirclefill">
+            <value name="VALUE_X1"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_Y1"><shadow type="math_number"><field name="NUM">10</field></value>
+            <value name="VALUE_R"><shadow type="math_number"><field name="NUM">10</field></value>
+              <value name="VALUE_C">
+                <shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+              </value>
+          </block>
+          <block type="lcd_drawimage">
+            <value name="PATH"><shadow type="text"><field name="TEXT">/www/pyly/image/code.jpg</field></value>
+            <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+          </block>
+          <block type="lcd_screenshot"></block>
+          <label text="END" web-class="myLabelStyle"></label>
+        </category>
+        <category name="%{BKY_CATLCDMIDDLE}" colour="%{BKY_LCD_HUE}">
+        <block type="lcd_drawdotarray">
+          <value name="VALUE_F">
+              <shadow type="colour_picker"><field name="COLOUR">#ff0000</field></shadow>
+            </value>
+          <value name="VALUE_C">
+              <shadow type="colour_picker"><field name="COLOUR">#060606</field></shadow>
+          </value>
+        </block>
+        <block type="lcd_drawdotarraybit">
+            <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_C">
+              <shadow type="logic_boolean"><field name="BOOLEAN">True</field></shadow>
+            </value>
+        </block>
+        <block type="lcd_getdotarraybit">
+          <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+          <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+        </block>
+        <block type="lcd_selectarrarydot">
+          <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+          <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+          <value name="VALUE_C">
+            <shadow type="colour_picker"><field name="COLOUR">#00ff00</field></shadow>
+          </value>
+        </block>
+        
+        <block type="lcd_drawdotarraymove">
+          <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+          <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+        </block>
+        <block type="lcd_dotarray">
+            <value name="NAME">
+              <shadow type="colour_picker"><field name="COLOUR">#00ff00</field></shadow>
+            </value>
+        </block>
+        <block type="lcd_screenshotdebug"></block>
+        <block type="lcd_screenprevie"></block>
+        <label text="END" web-class="myLabelStyle"></label>
+      </category>
+      <category name="%{BKY_CATLCDHIGH}" colour="%{BKY_LCD_HUE}">
+        <block type="lcd_inittemp">
+            <value name="VALUE_S">
+                <block type="variables_get">
+                  <field name="VAR">{tempVariable}</field>
+                </block>
+            </value>
+            <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+        </block>
+        <block type="lcd_showtemp">
+            <value name="VALUE_S">
+                <block type="variables_get">
+                  <field name="VAR">{tempVariable}</field>
+                </block>
+            </value>
+            <value name="VALUE_V"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_M"><shadow type="math_number"><field name="NUM">0</field></value>
+        </block>  
+          <block type="lcd_showtrafficlight">
+          <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+          <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+        </block>
+        <block type="lcd_drawawesome">
+          <value name="VALUE_FONT"><shadow type="math_number"><field name="NUM">32</field></value>
+            <value name="VALUE"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+            <value name="VALUE_FC">
+                <shadow type="colour_picker"><field name="COLOUR">#ffffff</field></shadow>
+              </value>
+            <value name="VALUE_BC">
+                <shadow type="colour_picker"><field name="COLOUR">#000000</field></shadow>
+              </value>
+            <value name="VALUE_AC">
+                <shadow type="colour_picker"><field name="COLOUR">#000000</field></shadow>
+              </value>
+        </block>
+        <block type="lcd_map0init">
+        </block>
+        <block type="lcd_carinit">
+        <value name="VALUE_X"><shadow type="math_number"><field name="NUM">0</field></value>
+        <value name="VALUE_Y"><shadow type="math_number"><field name="NUM">0</field></value>
+        </block>
+        <block type="lcd_carmove">
+        <value name="STEP"><shadow type="math_number"><field name="NUM">1</field></value>
+        </block>
+        <label text="END" web-class="myLabelStyle"></label>
+      </category>
+     </category>
+     <category name="%{BKY_CATPRINT}" colour="%{BKY_PRINT_HUE}">
+      <block type="print_to">
+         <value name="NAME"><shadow type="text"><field name="TEXT">pyly</field>
+      </block>
+     <block type="print_console"></block>
+     <block type="print_lcd"></block>
+      <block type="print_tcpip">
+        <value name="NAME"><shadow type="tcpip_ipaddress"></shadow></value>
+      </block>
+      <block type="print_serial"></block>
+      <block type="print_file"></block>
+      <label text="END" web-class="myLabelStyle"></label>
+     </category>
+    <sep></sep>
+    <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_null"></block>
+      <block type="logic_ternary"></block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="BY">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+      <block type="math_input"></block>
+      <block type="math_arithmetic">
+        <value name="A">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="B">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_single">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">9</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_trig">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">45</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constant"></block>
+      <block type="math_number_property">
+        <value name="NUMBER_TO_CHECK">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_round">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">3.1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo">
+        <value name="DIVIDEND">
+          <shadow type="math_number">
+            <field name="NUM">64</field>
+          </shadow>
+        </value>
+        <value name="DIVISOR">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constrain">
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="LOW">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="HIGH">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">
+      <block type="text"></block>
+      <block type="text_eval"></block>
+      <block type="text_replace"></block>
+      <block type="text_join"></block>
+      <block type="text_append">
+        <value name="TEXT">
+          <shadow type="text"></shadow>
+        </value>
+      </block>
+      <block type="text_convert_string"></block>
+      <block type="text_convert_int">
+      </block>
+      <block type="text_convert_float"></block>
+      <block type="text_convert_ord"></block>
+      <block type="text_json_get">
+       <value name="NAME">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+        </block>
+      <block type="text_length">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">pyly</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_isEmpty">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+        <value name="FIND">
+          <shadow type="text">
+            <field name="TEXT">pyly</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_charAt">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_getSubstring">
+        <value name="STRING">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_changeCase">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">pyly</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_trim">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">pyly</field>
+          </shadow>
+        </value>
+      </block>
+      
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">pyly</field>
+          </shadow>
+        </value>
+      </block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_with">
+        <mutation items="0"></mutation>
+      </block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getIndex">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_setIndex">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getSublist">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_split">
+        <value name="DELIM">
+          <shadow type="text">
+            <field name="TEXT">,</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_sort"></block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <category name="%{BKY_CATCOLOUR}" colour="%{BKY_COLOUR_HUE}">
+      <block type="colour_picker"></block>
+      <block type="colour_random"></block>
+      <block type="colour_rgb">
+        <value name="RED">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+        <value name="GREEN">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="BLUE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="colour_blend">
+        <value name="COLOUR1">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#ff0000</field>
+          </shadow>
+        </value>
+        <value name="COLOUR2">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#3333ff</field>
+          </shadow>
+        </value>
+        <value name="RATIO">
+          <shadow type="math_number">
+            <field name="NUM">0.5</field>
+          </shadow>
+        </value>
+      </block>
+      <label text="END" web-class="myLabelStyle"></label>
+    </category>
+    <sep></sep>
+    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+  </xml>
+
+</body>
+</html>
