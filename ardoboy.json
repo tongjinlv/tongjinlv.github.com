@@ -1,11 +1,11 @@
 {
-    "name": "Arduboy",
-    "keywords": "arduboy, game",
-    "description": "This library is for content creation on the Arduboy, a portable gaming platform",
+    "name": "Ardoboy",
+    "keywords": "ardoboy, game",
+    "description": "This library is for content creation on the Ardoboy, a portable gaming platform",
     "repository":
     {
         "type": "git",
-        "url": "https://github.com/Arduboy/Arduboy.git"
+        "url": "https://github.com/ardoboy/ardoboy.git"
     },
     "version": "1.1.1",
     "exclude": "extras",
